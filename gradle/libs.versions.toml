@@ -12,6 +12,7 @@ constraintlayout = "2.1.4"
 glide = "4.16.0"
 retrofit = "2.9.0"
 okhttpLogging = "4.11.0"
+chucker = "3.5.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,6 +27,8 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofitGson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttpLogging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpLogging" }
+chuckerDebug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+chuckerRelease = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

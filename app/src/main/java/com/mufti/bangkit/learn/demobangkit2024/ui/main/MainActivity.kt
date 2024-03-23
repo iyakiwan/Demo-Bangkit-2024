@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getUser() {
-        val client = ApiConfig.getApiService().getListUsers("1")
+        val client = ApiConfig.getApiService(this@MainActivity).getListUsers("1")
 
         binding.pvUsers.isVisible = true
         client.enqueue(object : Callback<UserResponse> {

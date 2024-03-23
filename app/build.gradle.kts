@@ -57,6 +57,10 @@ dependencies {
     implementation(libs.retrofitGson)
     implementation(libs.okhttpLogging)
 
+    // Chucker
+    debugImplementation(libs.chuckerDebug)
+    releaseImplementation(libs.chuckerRelease)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
