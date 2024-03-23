@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Demo Bangkit 2024</string>
+    <string name="avatar">Avatar</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="format_full_name">%s %s</string>
 </resources>
