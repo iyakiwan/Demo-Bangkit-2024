@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mufti.bangkit.learn.demobangkit2024.R
 import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ActivityMainBinding
+import com.mufti.bangkit.learn.demobangkit2024.model.User
 import com.mufti.bangkit.learn.demobangkit2024.utils.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
 
         observerListUser()
+
+        setupView()
     }
 
     private fun setupWindow() {
@@ -54,23 +57,52 @@ class MainActivity : AppCompatActivity() {
         binding.rvUsers.setHasFixedSize(true)
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         binding.rvUsers.adapter = adapter
+
+        adapter.setOnUserSelected {
+            viewModel.setLocalUser(it)
+        }
     }
 
     private fun observerListUser() {
-        viewModel.listUser.observe(this){
-            when(it){
+        viewModel.listUser.observe(this) {
+            when (it) {
                 is Result.Loading -> {
                     binding.pvUsers.isVisible = true
                 }
+
                 is Result.Success -> {
                     binding.pvUsers.isVisible = false
                     adapter.submitList(it.data)
                 }
+
                 is Result.Error -> {
                     binding.pvUsers.isVisible = false
                     Toast.makeText(this@MainActivity, it.error, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun setupView() {
+        binding.floatingActionButton.setOnClickListener {
+            val dataUser = viewModel.getLocalUser()
+            val formatToast = if (dataUser.firstName.isNotEmpty() && dataUser.lastName.isNotEmpty())
+                "${dataUser.firstName} ${dataUser.lastName} is selected!"
+            else "No user selected!"
+            Toast.makeText(this@MainActivity, formatToast, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.fabClean.setOnClickListener {
+            viewModel.setLocalUser(
+                User(
+                    id = 0,
+                    email = "",
+                    firstName = "",
+                    lastName = "",
+                    avatar = ""
+                )
+            )
+            Toast.makeText(this@MainActivity, "User cleaned!", Toast.LENGTH_SHORT).show()
         }
     }
 }

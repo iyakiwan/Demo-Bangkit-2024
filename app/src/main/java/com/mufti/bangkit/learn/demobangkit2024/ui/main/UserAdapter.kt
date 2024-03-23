@@ -14,6 +14,8 @@ import com.mufti.bangkit.learn.demobangkit2024.model.User
 
 class UserAdapter : ListAdapter<User, UserAdapter.ListViewHolder>(diffCallback) {
 
+    private var onUserSelected: (User) -> Unit = {}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
             ItemListUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,13 +24,13 @@ class UserAdapter : ListAdapter<User, UserAdapter.ListViewHolder>(diffCallback) 
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(user)
+        holder.bind(user, onUserSelected)
     }
 
     class ListViewHolder(private var binding: ItemListUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: User) {
+        fun bind(user: User, onUserSelected: (User) -> Unit) {
             Glide.with(binding.root)
                 .load(user.avatar)
                 .apply(RequestOptions().override(80, 80).placeholder(R.drawable.ic_avatar))
@@ -41,7 +43,15 @@ class UserAdapter : ListAdapter<User, UserAdapter.ListViewHolder>(diffCallback) 
                 user.lastName
             )
             binding.itemEmail.text = user.email
+
+            binding.root.setOnClickListener {
+                onUserSelected(user)
+            }
         }
+    }
+
+    fun setOnUserSelected(onUserSelected: (User) -> Unit) {
+        this.onUserSelected = onUserSelected
     }
 
     companion object {
