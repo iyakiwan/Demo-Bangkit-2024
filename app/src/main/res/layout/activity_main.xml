@@ -55,4 +55,16 @@
         android:focusable="true"
         tools:ignore="ContentDescription" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimens_16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/fabClean"
+        app:layout_constraintEnd_toEndOf="@+id/fabClean"
+        app:srcCompat="@drawable/baseline_app_settings_alt_24"
+        android:focusable="true"
+        tools:ignore="ContentDescription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

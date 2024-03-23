@@ -1,9 +1,11 @@
 package com.mufti.bangkit.learn.demobangkit2024.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -13,6 +15,7 @@ import com.mufti.bangkit.learn.demobangkit2024.R
 import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ActivityMainBinding
 import com.mufti.bangkit.learn.demobangkit2024.model.User
+import com.mufti.bangkit.learn.demobangkit2024.ui.setting.SettingActivity
 import com.mufti.bangkit.learn.demobangkit2024.utils.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
 
         observerListUser()
+        observerTheme()
 
         setupView()
     }
@@ -103,6 +107,20 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             Toast.makeText(this@MainActivity, "User cleaned!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.fabSetting.setOnClickListener{
+            startActivity(Intent(this, SettingActivity::class.java))
+        }
+    }
+
+    private fun observerTheme() {
+        viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
         }
     }
 }

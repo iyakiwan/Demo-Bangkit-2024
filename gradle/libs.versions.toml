@@ -15,6 +15,8 @@ glide = "4.16.0"
 retrofit = "2.9.0"
 okhttpLogging = "4.11.0"
 chucker = "3.5.2"
+datastore = "1.0.0"
+kotlinxCoroutines = "1.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +36,9 @@ retrofitGson = { group = "com.squareup.retrofit2", name = "converter-gson", vers
 okhttpLogging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpLogging" }
 chuckerDebug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
 chuckerRelease = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
+datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
