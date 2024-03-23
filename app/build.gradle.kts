@@ -15,6 +15,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://reqres.in/\"")
     }
 
     buildTypes {
@@ -35,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -48,6 +51,11 @@ dependencies {
 
     // Glide
     implementation(libs.glide)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofitGson)
+    implementation(libs.okhttpLogging)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
