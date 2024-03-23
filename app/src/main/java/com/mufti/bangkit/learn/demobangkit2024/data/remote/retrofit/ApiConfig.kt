@@ -1,4 +1,4 @@
-package com.mufti.bangkit.learn.demobangkit2024.data.retrofit
+package com.mufti.bangkit.learn.demobangkit2024.data.remote.retrofit
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mufti.bangkit.learn.demobangkit2024.R
 import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ActivityMainBinding
+import com.mufti.bangkit.learn.demobangkit2024.utils.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -42,9 +43,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+
         viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.NewInstanceFactory()
+            factory
         )[MainViewModel::class.java]
     }
 
@@ -73,6 +76,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getUser() {
-        viewModel.getListUser(this)
+        viewModel.getListUser()
     }
 }

@@ -1,4 +1,4 @@
-package com.mufti.bangkit.learn.demobangkit2024.data.response
+package com.mufti.bangkit.learn.demobangkit2024.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,6 @@
-package com.mufti.bangkit.learn.demobangkit2024.data.mapper
+package com.mufti.bangkit.learn.demobangkit2024.data.remote.mapper
 
-import com.mufti.bangkit.learn.demobangkit2024.data.response.UserResponse
+import com.mufti.bangkit.learn.demobangkit2024.data.remote.response.UserResponse
 import com.mufti.bangkit.learn.demobangkit2024.model.User
 
 object UserMapper {
