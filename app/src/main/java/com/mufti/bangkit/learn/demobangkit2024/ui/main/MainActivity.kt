@@ -7,19 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mufti.bangkit.learn.demobangkit2024.R
-import com.mufti.bangkit.learn.demobangkit2024.data.mapper.UserMapper
-import com.mufti.bangkit.learn.demobangkit2024.data.response.UserResponse
-import com.mufti.bangkit.learn.demobangkit2024.data.retrofit.ApiConfig
+import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ActivityMainBinding
-import com.mufti.bangkit.learn.demobangkit2024.model.DataDummy
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainViewModel
     private val adapter by lazy { UserAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         setupWindow()
 
+        setupViewModel()
         setupRecyclerView()
+
+        observerListUser()
         getUser()
     }
 
@@ -42,33 +41,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[MainViewModel::class.java]
+    }
+
     private fun setupRecyclerView() {
         binding.rvUsers.setHasFixedSize(true)
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         binding.rvUsers.adapter = adapter
     }
 
-    private fun getUser() {
-        val client = ApiConfig.getApiService(this@MainActivity).getListUsers("1")
-
-        binding.pvUsers.isVisible = true
-        client.enqueue(object : Callback<UserResponse> {
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful) {
-                    val result = response.body()
-                    val dataResult = UserMapper.mapListUserResponseToListUser(result)
-
-                    adapter.submitList(dataResult)
+    private fun observerListUser() {
+        viewModel.listUser.observe(this){
+            when(it){
+                is Result.Loading -> {
+                    binding.pvUsers.isVisible = true
                 }
-                binding.pvUsers.isVisible = false
+                is Result.Success -> {
+                    binding.pvUsers.isVisible = false
+                    adapter.submitList(it.data)
+                }
+                is Result.Error -> {
+                    binding.pvUsers.isVisible = false
+                    Toast.makeText(this@MainActivity, it.error, Toast.LENGTH_SHORT).show()
+                }
             }
+        }
+    }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()
-                t.printStackTrace()
-                binding.pvUsers.isVisible = false
-            }
-        })
-        adapter.submitList(DataDummy.dataDummyUser())
+    private fun getUser() {
+        viewModel.getListUser(this)
     }
 }

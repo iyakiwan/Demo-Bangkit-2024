@@ -49,6 +49,11 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    // LiveData & ViewModel
+    implementation(libs.activity.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+
     // Glide
     implementation(libs.glide)
 
