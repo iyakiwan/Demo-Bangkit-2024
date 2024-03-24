@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.mufti.bangkit.learn.demobangkit2024.data.UserRepository
 import com.mufti.bangkit.learn.demobangkit2024.data.local.datastore.SettingPreferences
 import com.mufti.bangkit.learn.demobangkit2024.data.local.reference.SharedPreference
+import com.mufti.bangkit.learn.demobangkit2024.data.local.room.UserDatabase
 import com.mufti.bangkit.learn.demobangkit2024.data.remote.retrofit.ApiConfig
 
 
@@ -17,10 +18,13 @@ object Injection {
         val apiService = ApiConfig.getApiService(context)
         val preference = SharedPreference.getInstance(context)
         val dataStore = SettingPreferences.getInstance(context.dataStore)
+        val database = UserDatabase.getInstance(context)
+        val dao = database.userDao()
         return UserRepository.getInstance(
             apiService = apiService,
             preference = preference,
             dataStore = dataStore,
+            userDao = dao,
         )
     }
 }
