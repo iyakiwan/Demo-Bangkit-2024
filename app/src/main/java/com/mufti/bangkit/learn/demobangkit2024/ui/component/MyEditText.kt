@@ -57,8 +57,7 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (s.toString().isNotEmpty()) showClearButton() else hideClearButton()
-                if (s.toString().isNotEmpty() && s.toString().length < 8) error =
-                    "Password minimal 8 karakter"
+                if (s.toString().isNotEmpty() && s.toString().length < 8) error = "Password minimal 8 karakter"
             }
 
             override fun afterTextChanged(s: Editable) {

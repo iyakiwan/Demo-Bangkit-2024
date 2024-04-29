@@ -9,28 +9,23 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.mufti.bangkit.learn.demobangkit2024.R
 
-class MyButton : AppCompatButton {
+class MyButton //Opsi selain definisi constructor satu per satu
+//@JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatButton(context, attrs) {
+    : AppCompatButton {
 
-    private lateinit var enabledBackground: Drawable
-    private lateinit var disabledBackground: Drawable
-
+    private var enabledBackground: Drawable
+    private var disabledBackground: Drawable
     private var txtColor: Int = 0
 
-    // Konstruktor dari MyButton
-    constructor(context: Context) : super(context) {
-        init()
-    }
+    // Konstruktor untuk inisialiasi MyButton
+    constructor(context: Context) : super(context) // untuk di Activity/Fragment
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)  // untuk di XML
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        init()
+    init {
+        txtColor = ContextCompat.getColor(context, android.R.color.background_light)
+        enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button) as Drawable
+        disabledBackground =
+            ContextCompat.getDrawable(context, R.drawable.bg_button_disable) as Drawable
     }
 
     // Metode onDraw() digunakan untuk mengcustom button ketika enable dan disable
@@ -50,13 +45,5 @@ class MyButton : AppCompatButton {
 
         // Mengubah text pada button pada kondisi enable dan disable
         text = if (isEnabled) "Submit" else "Isi Dulu"
-    }
-
-    // pemanggilan Resource harus dilakukan saat kelas MyButton diinisialisasi, jadi harus dikeluarkan dari metode onDraw
-    private fun init() {
-        txtColor = ContextCompat.getColor(context, android.R.color.background_light)
-        enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button) as Drawable
-        disabledBackground =
-            ContextCompat.getDrawable(context, R.drawable.bg_button_disable) as Drawable
     }
 }
