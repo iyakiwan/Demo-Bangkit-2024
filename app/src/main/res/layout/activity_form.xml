@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.form.FormActivity">
 
-    <com.mufti.bangkit.learn.demobangkit2024.ui.component.MyEditText
+    <com.mufti.bangkit.learn.demobangkit2024.ui.component.custom.MyEditText
         android:id="@+id/my_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.mufti.bangkit.learn.demobangkit2024.ui.component.MyButton
+    <com.mufti.bangkit.learn.demobangkit2024.ui.component.custom.MyButton
         android:id="@+id/my_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_edit_text" />
 
-    <com.mufti.bangkit.learn.demobangkit2024.ui.component.MyProgressButton
+    <com.mufti.bangkit.learn.demobangkit2024.ui.component.custom.MyProgressButton
         android:id="@+id/my_progress_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,4 +42,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- todo-08: change the UI using Custom View -->
+    <com.mufti.bangkit.learn.demobangkit2024.ui.component.canvas.WatermelonView
+        android:id="@+id/watermelonView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

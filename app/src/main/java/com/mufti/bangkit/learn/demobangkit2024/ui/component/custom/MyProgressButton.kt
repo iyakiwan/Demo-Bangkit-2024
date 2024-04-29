@@ -1,4 +1,4 @@
-package com.mufti.bangkit.learn.demobangkit2024.ui.component
+package com.mufti.bangkit.learn.demobangkit2024.ui.component.custom
 
 import android.content.Context
 import android.util.AttributeSet
