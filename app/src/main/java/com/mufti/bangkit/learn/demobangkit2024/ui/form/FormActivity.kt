@@ -1,10 +1,13 @@
 package com.mufti.bangkit.learn.demobangkit2024.ui.form
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -34,6 +37,8 @@ class FormActivity : AppCompatActivity() {
                 binding.myProgressButton.stopLoading()
             }
         }
+
+        playAnimation()
     }
 
     private fun setupWindow() {
@@ -86,5 +91,25 @@ class FormActivity : AppCompatActivity() {
     private fun setMyButtonEnable() {
         val result = binding.myEditText.text
         binding.myButton.isEnabled = result != null && result.toString().isNotEmpty()
+    }
+
+    private fun playAnimation() {
+        val myButton = ObjectAnimator.ofFloat(binding.myButton, View.ALPHA, 1f).setDuration(500)
+        val myEditText =
+            ObjectAnimator.ofFloat(binding.myEditText, View.ALPHA, 1f).setDuration(500)
+        val myProgressButton =
+            ObjectAnimator.ofFloat(binding.myProgressButton, View.ALPHA, 1f).setDuration(500)
+        val watermelonView =
+            ObjectAnimator.ofFloat(binding.watermelonView, View.ALPHA, 1f).setDuration(500)
+
+        AnimatorSet().apply {
+            playSequentially(
+                myEditText,
+                myButton,
+                watermelonView,
+                myProgressButton,
+            )
+            startDelay = 500
+        }.start()
     }
 }

@@ -15,9 +15,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1" />
 
     <com.mufti.bangkit.learn.demobangkit2024.ui.component.custom.MyButton
         android:id="@+id/my_button"
@@ -26,10 +28,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/my_edit_text"
+        tools:alpha="1" />
 
     <com.mufti.bangkit.learn.demobangkit2024.ui.component.custom.MyProgressButton
         android:id="@+id/my_progress_button"
@@ -38,20 +42,24 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        android:alpha="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:alpha="1" />
 
     <!-- todo-08: change the UI using Custom View -->
     <com.mufti.bangkit.learn.demobangkit2024.ui.component.canvas.WatermelonView
         android:id="@+id/watermelonView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:alpha="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        tools:alpha="1"
         tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
