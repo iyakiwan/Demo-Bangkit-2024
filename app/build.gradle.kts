@@ -79,6 +79,9 @@ dependencies {
     debugImplementation(libs.chuckerDebug)
     releaseImplementation(libs.chuckerRelease)
 
+    //Lottie Files
+    implementation(libs.lottie)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
