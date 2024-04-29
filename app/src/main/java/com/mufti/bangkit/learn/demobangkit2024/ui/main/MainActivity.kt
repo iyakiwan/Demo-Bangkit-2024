@@ -15,6 +15,7 @@ import com.mufti.bangkit.learn.demobangkit2024.R
 import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ActivityMainBinding
 import com.mufti.bangkit.learn.demobangkit2024.model.User
+import com.mufti.bangkit.learn.demobangkit2024.ui.form.FormActivity
 import com.mufti.bangkit.learn.demobangkit2024.ui.setting.SettingActivity
 import com.mufti.bangkit.learn.demobangkit2024.utils.ViewModelFactory
 
@@ -111,6 +112,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.fabSetting.setOnClickListener{
             startActivity(Intent(this, SettingActivity::class.java))
+        }
+
+        binding.fabCustomView.setOnClickListener {
+            startActivity(Intent(this, FormActivity::class.java))
         }
     }
 

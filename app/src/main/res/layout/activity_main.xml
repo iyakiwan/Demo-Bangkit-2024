@@ -67,4 +67,16 @@
         android:focusable="true"
         tools:ignore="ContentDescription" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCustomView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/fabSetting"
+        app:layout_constraintEnd_toEndOf="@+id/fabSetting"
+        app:srcCompat="@drawable/baseline_featured_play_list_24"
+        tools:ignore="ContentDescription"
+        android:focusable="true" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
