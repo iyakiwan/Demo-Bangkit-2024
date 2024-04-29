@@ -79,4 +79,15 @@
         tools:ignore="ContentDescription"
         android:focusable="true" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/fabCustomView"
+        app:layout_constraintEnd_toEndOf="@+id/fabSetting"
+        app:srcCompat="@drawable/baseline_animation_24"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
