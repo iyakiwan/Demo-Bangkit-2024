@@ -84,6 +84,10 @@ dependencies {
     //Lottie Files
     implementation(libs.lottie)
 
+    // Google Maps
+    implementation(libs.play.services.maps.v1800)
+    implementation(libs.play.services.location)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
