@@ -16,6 +16,7 @@ import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ActivityMainBinding
 import com.mufti.bangkit.learn.demobangkit2024.model.User
 import com.mufti.bangkit.learn.demobangkit2024.ui.form.FormActivity
+import com.mufti.bangkit.learn.demobangkit2024.ui.maps.MapsActivity
 import com.mufti.bangkit.learn.demobangkit2024.ui.motion.MotionActivity
 import com.mufti.bangkit.learn.demobangkit2024.ui.setting.SettingActivity
 import com.mufti.bangkit.learn.demobangkit2024.utils.ViewModelFactory
@@ -121,6 +122,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.fabMotion.setOnClickListener {
             startActivity(Intent(this, MotionActivity::class.java))
+        }
+
+        binding.fabMaps.setOnClickListener {
+            startActivity(Intent(this, MapsActivity::class.java))
         }
     }
 

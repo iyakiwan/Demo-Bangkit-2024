@@ -20,4 +20,5 @@
     <string name="gambar_code_reviewer">Gambar code reviewer</string>
     <string name="gambar_alumni_terpercaya">Gambar alumni terpercaya</string>
     <string name="gambar_dicoding">Gambar dicoding</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
