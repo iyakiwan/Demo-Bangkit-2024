@@ -88,7 +88,12 @@ dependencies {
     implementation(libs.play.services.maps.v1800)
     implementation(libs.play.services.location)
 
+    //Testing
     testImplementation(libs.junit)
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.mockito.inline)
+    testImplementation (libs.androidx.core.testing)
+    testImplementation (libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

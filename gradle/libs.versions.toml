@@ -1,8 +1,10 @@
 [versions]
 agp = "8.3.2"
+coreTesting = "2.2.0"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
 activityKtx = "1.9.0"
+kotlinxCoroutinesTest = "1.7.3"
 lifecycleKtx = "2.8.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -13,6 +15,8 @@ material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
 glide = "4.16.0"
+mockitoCore = "5.11.0"
+mockitoInline = "5.2.0"
 playServicesMapsVersion = "18.0.0"
 retrofit = "2.11.0"
 okhttpLogging = "4.12.0"
@@ -27,6 +31,8 @@ playServicesMaps = "18.2.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -38,6 +44,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesMapsVersion" }
 play-services-maps-v1800 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
