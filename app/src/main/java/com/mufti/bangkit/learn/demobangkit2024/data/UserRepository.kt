@@ -3,10 +3,15 @@ package com.mufti.bangkit.learn.demobangkit2024.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.mufti.bangkit.learn.demobangkit2024.data.local.datastore.SettingPreferences
 import com.mufti.bangkit.learn.demobangkit2024.data.local.reference.SharedPreference
 import com.mufti.bangkit.learn.demobangkit2024.data.local.room.UserDao
 import com.mufti.bangkit.learn.demobangkit2024.data.remote.mapper.UserMapper
+import com.mufti.bangkit.learn.demobangkit2024.data.remote.paging.UserPagingSource
 import com.mufti.bangkit.learn.demobangkit2024.data.remote.retrofit.ApiService
 import com.mufti.bangkit.learn.demobangkit2024.model.User
 import kotlinx.coroutines.flow.Flow
@@ -18,21 +23,15 @@ class UserRepository private constructor(
     private val userDao: UserDao,
 ) {
 
-    fun getListUser(): LiveData<Result<List<User>>> = liveData {
-        emit(Result.Loading)
-        try {
-            val response = apiService.getListUsers("1")
-            val dataResult = UserMapper.mapListUserResponseToListUserEntity(response)
-
-            userDao.deleteAllUser()
-
-            userDao.insertUser(dataResult)
-
-            emit(Result.Success(UserMapper.mapListUserEntityToListUser(userDao.getAllUser())))
-        } catch (e: Exception) {
-            Log.d("UserRepository", "getListUser: ${e.message.toString()} ")
-            emit(Result.Error(e.message.toString()))
-        }
+    fun getListUser(): LiveData<PagingData<User>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 6
+            ),
+            pagingSourceFactory = {
+                UserPagingSource(apiService)
+            }
+        ).liveData
     }
 
     fun getLocalUser() = preference.getUser()

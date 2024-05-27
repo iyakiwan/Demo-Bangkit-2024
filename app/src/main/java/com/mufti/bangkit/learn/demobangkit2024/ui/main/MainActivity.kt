@@ -65,6 +65,11 @@ class MainActivity : AppCompatActivity() {
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         binding.rvUsers.adapter = adapter
 
+        binding.rvUsers.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
         adapter.setOnUserSelected {
             viewModel.setLocalUser(it)
         }
@@ -72,21 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun observerListUser() {
         viewModel.listUser.observe(this) {
-            when (it) {
-                is Result.Loading -> {
-                    binding.pvUsers.isVisible = true
-                }
-
-                is Result.Success -> {
-                    binding.pvUsers.isVisible = false
-                    adapter.submitList(it.data)
-                }
-
-                is Result.Error -> {
-                    binding.pvUsers.isVisible = false
-                    Toast.makeText(this@MainActivity, it.error, Toast.LENGTH_SHORT).show()
-                }
-            }
+            adapter.submitData(lifecycle, it)
         }
     }
 

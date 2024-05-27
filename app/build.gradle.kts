@@ -88,6 +88,9 @@ dependencies {
     implementation(libs.play.services.maps.v1800)
     implementation(libs.play.services.location)
 
+    //Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
     //Testing
     testImplementation(libs.junit)
     testImplementation (libs.mockito.core)

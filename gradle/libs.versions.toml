@@ -17,6 +17,7 @@ constraintlayout = "2.1.4"
 glide = "4.16.0"
 mockitoCore = "5.11.0"
 mockitoInline = "5.2.0"
+pagingRuntimeKtx = "3.3.0"
 playServicesMapsVersion = "18.0.0"
 retrofit = "2.11.0"
 okhttpLogging = "4.12.0"
@@ -32,6 +33,7 @@ playServicesMaps = "18.2.0"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleKtx" }

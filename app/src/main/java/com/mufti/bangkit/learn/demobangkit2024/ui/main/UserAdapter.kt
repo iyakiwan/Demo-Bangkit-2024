@@ -2,6 +2,7 @@ package com.mufti.bangkit.learn.demobangkit2024.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import com.mufti.bangkit.learn.demobangkit2024.R
 import com.mufti.bangkit.learn.demobangkit2024.databinding.ItemListUserBinding
 import com.mufti.bangkit.learn.demobangkit2024.model.User
 
-class UserAdapter : ListAdapter<User, UserAdapter.ListViewHolder>(diffCallback) {
+class UserAdapter : PagingDataAdapter<User, UserAdapter.ListViewHolder>(diffCallback) {
 
     private var onUserSelected: (User) -> Unit = {}
 
@@ -24,7 +25,9 @@ class UserAdapter : ListAdapter<User, UserAdapter.ListViewHolder>(diffCallback) 
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(user, onUserSelected)
+        if (user != null) {
+            holder.bind(user, onUserSelected)
+        }
     }
 
     class ListViewHolder(private var binding: ItemListUserBinding) :

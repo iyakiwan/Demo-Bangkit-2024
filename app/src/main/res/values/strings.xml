@@ -21,4 +21,5 @@
     <string name="gambar_alumni_terpercaya">Gambar alumni terpercaya</string>
     <string name="gambar_dicoding">Gambar dicoding</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Coba lagi</string>
 </resources>
