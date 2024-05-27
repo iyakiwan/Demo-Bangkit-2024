@@ -2,9 +2,11 @@ package com.mufti.bangkit.learn.demobangkit2024.ui.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.AsyncPagingDataDiffer
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.ListUpdateCallback
-import com.mufti.bangkit.learn.demobangkit2024.data.Result
 import com.mufti.bangkit.learn.demobangkit2024.data.UserRepository
+import com.mufti.bangkit.learn.demobangkit2024.data.paging.UserPagingSource
 import com.mufti.bangkit.learn.demobangkit2024.model.User
 import com.mufti.bangkit.learn.demobangkit2024.utils.DataDummy
 import com.mufti.bangkit.learn.demobangkit2024.utils.MainDispatcherRule
@@ -12,13 +14,11 @@ import com.mufti.bangkit.learn.demobangkit2024.utils.getOrAwaitValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -35,6 +35,58 @@ class MainViewModelTest {
     private lateinit var userRepository: UserRepository
 
     @Test
+    fun `when Get List User Should Not Null and Return Success`() = runTest {
+        val dummyUsers = DataDummy.generateDummyUsers()
+        val data: PagingData<User> = UserPagingSource.snapshot(dummyUsers)
+        val expectedUsers = MutableLiveData<PagingData<User>>()
+        expectedUsers.value = data
+
+        `when`(userRepository.getListUser()).thenReturn(expectedUsers)
+
+        val userViewModel = MainViewModel(userRepository)
+        val actualUsers = userViewModel.listUser.getOrAwaitValue()
+
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = UserAdapter.diffCallback,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main,
+        )
+        differ.submitData(actualUsers)
+
+        assertNotNull(differ.snapshot())
+        assertEquals(dummyUsers.size, differ.snapshot().size)
+        assertEquals(dummyUsers[0], differ.snapshot()[0])
+    }
+
+    @Test
+    fun `when Get List User Empty Should Return No Data`() = runTest {
+        val data: PagingData<User> = PagingData.from(emptyList())
+        val expectedUsers = MutableLiveData<PagingData<User>>()
+        expectedUsers.value = data
+
+        `when`(userRepository.getListUser()).thenReturn(expectedUsers)
+
+        val userViewModel = MainViewModel(userRepository)
+        val actualUsers: PagingData<User> = userViewModel.listUser.getOrAwaitValue()
+
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = UserAdapter.diffCallback,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main,
+        )
+        differ.submitData(actualUsers)
+
+        assertEquals(0, differ.snapshot().size)
+    }
+
+    private val noopListUpdateCallback = object : ListUpdateCallback {
+        override fun onInserted(position: Int, count: Int) {}
+        override fun onRemoved(position: Int, count: Int) {}
+        override fun onMoved(fromPosition: Int, toPosition: Int) {}
+        override fun onChanged(position: Int, count: Int, payload: Any?) {}
+    }
+    
+    /*@Test
     fun `when Get List User Should Not Null and Return Success`() = runTest {
         val dummyUsers = DataDummy.generateDummyUsers()
         val expectedUsers = MutableLiveData<Result<List<User>>>()
@@ -84,5 +136,5 @@ class MainViewModelTest {
         Mockito.verify(userRepository).getListUser()
         assertNotNull(actualUsers)
         assertTrue(actualUsers is Result.Error)
-    }
+    }*/
 }

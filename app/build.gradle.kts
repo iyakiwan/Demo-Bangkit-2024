@@ -41,6 +41,12 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    testOptions {
+        animationsDisabled = true
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
 }
 
 dependencies {
